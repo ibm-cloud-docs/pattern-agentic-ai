@@ -64,42 +64,60 @@ production: false
 {: toc-version="1.0"}
 
 
-This reference architecture summarizes the best practices for Watsonx Gen AI Pattern deployment on IBM Cloud.
+This reference architecture summarizes the best practices for deploying agentic artificial intelligence (AI) patterns on IBM Cloud. 
 
-AI holds the promise to transform life and business but raises concerns around trust, security, and regulatory compliance. Understanding Gen AI and its infrastructure is vital for navigating its complex landscape. This reference architecture showcases how IBM Cloud and Watsonx provide a secure environment for deploying and governing Gen AI applications.
+[Agentic AI](https://www.ibm.com/think/insights/agentic-ai) is rapidly enabling a new paradigm for enterprises to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. A production deployment of agentic AI systems requires not just the AI and generative AI capabilities but also has a significant reliance on the traditional supporting services. 
 
-A more specific use case of this pattern is a Retrieval Augmented Generation [(RAG)](https://www.ibm.com/architectures/hybrid/genai-rag) pattern. RAG enables [foundation models](https://www.ibm.com/products/watsonx-ai/foundation-models) to produce factually correct outputs by querying relevant content. RAG is a solution for any business scenario where there is a large body of documentation that a user must consult to provide confident answers. Below is a diagram that shows the flow of a RAG solution. Please note that this is not the entire reference architecture, but a small portion highlighted for better understanding of what is possible with this Gen AI reference architecture.
+A fundamental architectural decision for agentic AI (or any generative AI) soultion whether to use a single tenant or a multi-tenant generative AI platform on IBM Cloud. 
 
+### Dedicated single-tenant generative AI platform
 
-![RAG.](rag-pattern-v2.drawio.svg "RAG"){: caption="Figure 1. RAG Pattern" caption-side="bottom"}
+A single-tenant generative AI platform provides a dedicated, single-tenant environment on IBM Cloud for model serving, model management and administration. It is ideal for organizations that need full control over their models and AI workloads with a focus on security, customization, and performance. 
+
+The generative AI platform is hosted within a virtual private cloud (VPC) and ensures high availability, scalability, and optimal performance, while aligning with IBM Cloud's best practices. It's perfect for industries with strict data sovereignty and compliance needs. While the GPU infrastructure is IBM managed, there is varying degree of responsibilities around the gen AI ecosystem that must be managed by the customer. 
+
+Options for the platform include:
+- Virtual Server Instances (VSI) with GPUs
+- Kubernetes cluster with GPU nodes
+- Red Hat Enterprise Linux AI (RHELAI) VSI with GPU nodes
+- Red Hat Openshift cluster with GPU nodes 
+- Red Hat Openshift AI (RHOAI) cluster with GPU nodes
+- Red Hat OpenShift Cluster with GPU nodes + watsonx AI software
+
+### Shared multi-tenant generative AI platform
+
+The multi-tenant gen AI platform on IBM Cloud is available from watsonx.ai SaaS. It provides a more streamlined, fully managed experience and larger ecosystem of products and services for data and governance. It eliminates the need for customers to manage infrastructure and the ecosystem making ut suitable for businesses looking for convenience and reduced operational overhead.
+
+Each approach, whether dedicated single tenant, or shared multi-tenant has its distinct advantages and a decision ultimately depends on the organizations's requirements around control, cost, performance, scale, and complexity. 
 
 ## Architecture diagram
 {: #architecture-diagram}
 
-The below diagram represents the architecture for Gen AI on IBM cloud and reuses the [best practices](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-about) for IBM Cloud for Financial Services and [VPC reference architecture](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
+The reference architecture below shows how IBM Cloud provides a secure, compliant and resilient environment to implement an agentic AI system. It reuses the [best practices](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-about) for IBM Cloud for Financial Services and [VPC reference architecture](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
 
-![Architecture.](ref-arch-watsonx.drawio.svg "Architecture"){: caption="Figure 2. Reference Architecture" caption-side="bottom"}
+** DIAGRAM HERE **
 
-Central to the architecture are three VPCs, which provide for separation of concerns between provider management functionality and consumer workloads.
+Central to the architecture are VPCs, which provide separation of concerns between provider management functionality and consumer workloads. 
 
 **Management VPC**<br>
+
 Provides compute, storage, and network services to enable the client or service provider's administrators to monitor, operate, and maintain the environment.
 
-**Workload VPC**<br>
-Provides compute, storage, and network services to support hosted applications and operations that deliver services to the consumer.
+**Application Workload VPC**<br>
+
+Provides the dedicated single tenant compute, storage, and network services to support the frontend / UI application that end-users use to access an agentic system. It also includes backend applications and business microservices that agentic AI application many require. The multi-tenant option will be to use serverless platform for hosting applications and cloud databases. 
+
+**Agentic AI Application Workload VPC**<br>
+
+Provides the dedicated single tenant compute, storage, and network services to support the core agentic AI application and their dependencies like the tools and orchestration frameworks. The multi-tenant option will be to use other IBM Cloud platforms and services that provide low-code / no code alternatives to create and host agentic AI systems. 
+
+**Gen AI Platform Workload VPC**<br>
+
+Provides dedicated single tenant compute, including GPUs, storage, and network services to securely support the single tenant (dedicated) gen AI platform of virtual server instances or containers. For a multi-tenant option the gen AI capabilities and GPUs are available form other IBM Cloud AI / gen AI platforms and services. 
 
 **Edge VPC**<br>
-The edge VPC is used to enhance boundary protection for the workload VPC, by allow consumers to access Gen AI User Interface through the public internet. [(see here)](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-connectivity-workload#consumer-provider-different-org)
 
-Other features of the reference architecture:<br>
-
-* Can reside in one or more multizone regions to provide additional resiliency. 
-
-* Enables access to the management VPC from the application provider's enterprise environment through IBM Cloud Virtual Private Network Gateway for VPC.
-
-* Provides connectivity from the consumer's enterprise environment to the workload VPC through Direct Link.
-
-* Connects management VPC, workload VPC, and Edge VPC by using IBM Cloud Transit Gateway.
+The edge VPC is used to enhance boundary protection for the application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet. 
 
 ## Design concepts
 {: #design-concepts}
@@ -195,5 +213,3 @@ This involves collecting and storing evidence of the development process, such a
 
 **Security and Compliance Center (SCC)** <br>
 This reference architecture utilizes the Security and Compliance Center (SCC) which defines policy as code, implements controls for secure data and workload deployments and assess security and compliance posture. For this reference architecture two profiles are used. The [**IBM Cloud Framework for Financial Services**](https://cloud.ibm.com/docs/framework-financial-services-controls?topic=framework-financial-services-controls-overview) and **AI ICT Guardrails**. A profile is a grouping of controls that can be evaluated for compliance.
-
-
