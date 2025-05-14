@@ -58,7 +58,7 @@ production: false
 
 
 
-# Agentic AI Pattern for Watsonx on IBM Cloud
+# Agentic AI Pattern for watsonx on IBM Cloud
 {: #agenticai-pattern}
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
@@ -66,17 +66,46 @@ production: false
 
 This reference architecture summarizes the best practices for deploying agentic artificial intelligence (AI) patterns on IBM Cloud. 
 
-[Agentic AI](https://www.ibm.com/think/insights/agentic-ai) is rapidly enabling a new paradigm for enterprises to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. A production deployment of agentic AI systems requires not just the AI and generative AI capabilities but also has a significant reliance on the traditional supporting services. 
+[Agentic AI](https://www.ibm.com/think/insights/agentic-ai) is rapidly enabling a new paradigm for enterprises for improving their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. A production deployment of agentic AI systems requires not just the AI and generative AI capabilities but also has a significant reliance on the traditional supporting services. 
 
-A fundamental architectural decision for agentic AI (or any generative AI) soultion whether to use a single tenant or a multi-tenant generative AI platform on IBM Cloud. 
+A fundamental architectural decision for agentic AI soultion on IBM Cloud is whether to use a single-tenant or a multi-tenant generative AI platform. 
 
-### Dedicated single-tenant generative AI platform
+### Single-tenant generative AI platform
 
-A single-tenant generative AI platform provides a dedicated, single-tenant environment on IBM Cloud for model serving, model management and administration. It is ideal for organizations that need full control over their models and AI workloads with a focus on security, customization, and performance. 
+A single-tenant generative AI platform provides a dedicated infrastructure environment on IBM Cloud for AI/gen AI model serving, model management and administration. It is ideal for organizations that need more control over their models and AI workloads with a focus on data sovereignty and compliance needs, security, performance and customization. A single-tenant generative AI platform is hosted within a virtual private cloud (VPC). It aligns with IBM Cloud's best practices and ensures security, high availability, scalability, and optimal performance. The GPU infrastructure is IBM managed and depending on the selected servies on IBM Cloud organization has varying degree of control over generative AI ecosystem.
 
-The generative AI platform is hosted within a virtual private cloud (VPC) and ensures high availability, scalability, and optimal performance, while aligning with IBM Cloud's best practices. It's perfect for industries with strict data sovereignty and compliance needs. While the GPU infrastructure is IBM managed, there is varying degree of responsibilities around the gen AI ecosystem that must be managed by the customer. 
+### Multi-tenant generative AI platform
 
-Options for the platform include:
+A multi-tenant generative AI platform logically separates organizations deployments but physically shares the underlying infrastructure environment, managed by IBM Cloud. Multi-tenant genaerative AI platform is available and managed by watsonx.ai SaaS. It provides a more streamlined, fully managed experience and larger ecosystem of products and services for AI/gen AI data and governance. It eliminates the need to manage infrastructure and ecosystem making it suitable for organizations looking for convenience and reduced operational overhead.
+
+Each approach, whether dedicated single-tenant, or shared multi-tenant has its distinct advantages and a decision ultimately depends on the organization's requirements around control, cost, performance, scale, and complexity. More commonly, a hybrid architecture is used - for example consumer may want to host applications using multi-tenant services but use a single-tenant dedicated generative AI platform.
+
+## Architecture diagram
+{: #architecture-diagram}
+
+The reference architecture below shows how IBM Cloud provides a secure, compliant and resilient environment to implement an agentic AI system. For single-tenant deployments of applications and generative AI platform the organization (consumer) utilze VPCs with IBM Cloud IaaS and PaaS services. Multi-tenant deployments utilize PaaS and SaaS services. Security, compliance, loggining, monitoring and application lifecycle (devsecops) are common and required services available as SaaS on IBM Cloud. The architecture reuses the [best practices](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-about) for IBM Cloud for Financial Services and [VPC reference architecture](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
+
+
+
+** DIAGRAM HERE **
+
+Below is a description about the deployment of workloads and thier administration.
+
+**Management and Administration**<br>
+
+For single-tenant deployment, the Management VPC provides compute, storage, and network services like VPN to enable the consumer's or service provider's administrators to monitor, operate, and maintain the deployed agentic AI environment infrastructure. Multi-tenant deployments utilize IBM Cloud Identiy and Access Management services.
+
+**Application Workload**<br>
+
+For single-tenant deployment, the Application workload VPC provides the dedicated compute, storage, and network services to support the frontend / UI application that end-users use to access an agentic system. It also includes backend applications and business microservices that agentic AI application many require. These include the virtual server instance or Red Hat OpenShift for containerized workloads. For a multi-tenant deployment option will be to use serverless platform like Code Engine for hosting these applications, backend services and IBM Cloud databases. 
+
+**Agentic AI Application Workload**<br>
+
+For single-tenant deployment, the Agentic AI Application Workload VPC provides the dedicated compute, storage, and network services to support the core agentic AI application and their dependencies like the tools and orchestration frameworks. These include the virtual server instance or Red Hat OpenShift for containerized workloads. The multi-tenant option will be to use  serverless platform like Code Engine and other IBM Cloud platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no code alternatives to create and host agentic AI systems. 
+
+**Generative AI Platform**<br>
+
+For single-tenant deployment the Gen AI Platform Workload VPC provides the dedicated compute, including GPUs, storage, and network services to securely support a generative AI platform of virtual server instances or containers. The options include:
 - Virtual Server Instances (VSI) with GPUs
 - Kubernetes cluster with GPU nodes
 - Red Hat Enterprise Linux AI (RHELAI) VSI with GPU nodes
@@ -84,40 +113,13 @@ Options for the platform include:
 - Red Hat Openshift AI (RHOAI) cluster with GPU nodes
 - Red Hat OpenShift Cluster with GPU nodes + watsonx AI software
 
-### Shared multi-tenant generative AI platform
+The available GPUs profiles can be found [here](https://cloud.ibm.com/docs/vpc?topic=vpc-profiles&interface=ui#gpu).
 
-The multi-tenant gen AI platform on IBM Cloud is available from watsonx.ai SaaS. It provides a more streamlined, fully managed experience and larger ecosystem of products and services for data and governance. It eliminates the need for customers to manage infrastructure and the ecosystem making ut suitable for businesses looking for convenience and reduced operational overhead.
+For a multi-tenant option the gen AI capabilities and GPUs are available from watsonx.ai. 
 
-Each approach, whether dedicated single tenant, or shared multi-tenant has its distinct advantages and a decision ultimately depends on the organizations's requirements around control, cost, performance, scale, and complexity. 
+**Edge Compute and Network**<br>
 
-## Architecture diagram
-{: #architecture-diagram}
-
-The reference architecture below shows how IBM Cloud provides a secure, compliant and resilient environment to implement an agentic AI system. It reuses the [best practices](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-about) for IBM Cloud for Financial Services and [VPC reference architecture](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
-
-** DIAGRAM HERE **
-
-Central to the architecture are VPCs, which provide separation of concerns between provider management functionality and consumer workloads. 
-
-**Management VPC**<br>
-
-Provides compute, storage, and network services to enable the client or service provider's administrators to monitor, operate, and maintain the environment.
-
-**Application Workload VPC**<br>
-
-Provides the dedicated single tenant compute, storage, and network services to support the frontend / UI application that end-users use to access an agentic system. It also includes backend applications and business microservices that agentic AI application many require. The multi-tenant option will be to use serverless platform for hosting applications and cloud databases. 
-
-**Agentic AI Application Workload VPC**<br>
-
-Provides the dedicated single tenant compute, storage, and network services to support the core agentic AI application and their dependencies like the tools and orchestration frameworks. The multi-tenant option will be to use other IBM Cloud platforms and services that provide low-code / no code alternatives to create and host agentic AI systems. 
-
-**Gen AI Platform Workload VPC**<br>
-
-Provides dedicated single tenant compute, including GPUs, storage, and network services to securely support the single tenant (dedicated) gen AI platform of virtual server instances or containers. For a multi-tenant option the gen AI capabilities and GPUs are available form other IBM Cloud AI / gen AI platforms and services. 
-
-**Edge VPC**<br>
-
-The edge VPC is used to enhance boundary protection for the application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet. 
+For single-tenant deployments, the edge VPC is used to enhance boundary protection for the end-use facing application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet. Multi-tenant services provide their own security and access controls for the hosted applications and services.
 
 ## Design concepts
 {: #design-concepts}
