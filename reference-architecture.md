@@ -58,7 +58,7 @@ production: false
 
 
 
-# Agentic AI Pattern for watsonx on IBM Cloud
+# Agentic AI patterns on IBM Cloud
 {: #agenticai-pattern}
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
@@ -85,11 +85,9 @@ Each approach, whether dedicated single-tenant, or shared multi-tenant has its d
 
 The reference architecture below shows how IBM Cloud provides a secure, compliant and resilient environment to implement an agentic AI system. For single-tenant deployments of applications and generative AI platform the organization (consumer) utilze VPCs with IBM Cloud IaaS and PaaS services. Multi-tenant deployments utilize PaaS and SaaS services. Security, compliance, loggining, monitoring and application lifecycle (devsecops) are common and required services available as SaaS on IBM Cloud. The architecture reuses the [best practices](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-about) for IBM Cloud for Financial Services and [VPC reference architecture](https://cloud.ibm.com/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
 
+![alt text](rag-pattern-v2-arch-ALL-agentic-ref.drawio.svg)
 
-
-** DIAGRAM HERE **
-
-Below is a description about the deployment of workloads and thier administration.
+Below is a description about the deployment of workloads and their administration.
 
 **Management and Administration**<br>
 
