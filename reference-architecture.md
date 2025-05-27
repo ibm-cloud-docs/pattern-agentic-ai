@@ -66,20 +66,17 @@ production: false
 
 This reference architecture summarizes the best practices for deploying agentic artificial intelligence (AI) patterns on IBM Cloud. 
 
-[Agentic AI](https://www.ibm.com/think/topics/agentic-ai) is rapidly enabling a new paradigm for organizations to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. 
+[Agentic AI](https://www.ibm.com/think/topics/agentic-ai) is rapidly enabling a new paradigm for organizations to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. Agentic AI systems require not just the AI and generative AI capabilities but also rely on various other supporting services that provide the ecosystem for development and operations. 
 
-Agentic AI systems require not just the AI and generative AI capabilities but also rely on various other supporting services that provide the ecosystem for development and operations. 
-
+###### Logical architecture and key components
 The figure below shows the logical architecture and key components of a typical agentic AI system on IBM Cloud. 
 
-![Agentic AI system showing logical archtecture and key components](agentic-high-level-ref-arch.drawio.svg)
 
-###### Figure: Agentic AI system showing logical architecture and key components.
+![alt text](agentic-high-level-ref-arch.drawio.svg){: caption="Agentic AI system showing logical architecture and key components." caption-side="bottom"}
 
+To perform its function, each logical layer is enabled by a set of SaaS, PaaS or IaaS cloud service options. SaaS services are multi-tenant, i.e, they logically separate deployments from different oganizations but physically share the underlying infrastructure environment that is managed by IBM Cloud. SaaS is well-suited for convenience, initial experimentation, PoCs and for simple to medium complexity deployments in production. IaaS and PaaS services provide single-tenant dedicated isolated infrastructure for deployments with varying degree of control and management responsibilities for the organization. 
 
-To perform its function, each logical layer shown above is enabled by a set of SaaS, PaaS or IaaS cloud service options. SaaS services are multi-tenant, i.e, they logically separate deployments from different oganizations but physically share the underlying infrastructure environment that is managed by IBM Cloud. SaaS is well-suited for convenience, initial experimentation, PoCs and for simple to medium complexity deployments in production. IaaS and PaaS services provide single-tenant dedicated isolated infrastructure for deployments with varying degree of control and management responsibilities for the organization. 
-
-Below is a description about the logical layers, their key components and the typical cloud services to enable their function.
+Below is a description about the logical layers, their key components and the typical SaaS, PaaS or IaaS cloud services to enable their function.
 
 - **Agentic AI application**: This includes the core agentic AI system of AI agent/s with their tools, and the orchestration framework to service the end-user requests using LLMs. This may also include the applications that are required for end-user interaction with the agentic AI system (e.g. the user interface, chat interface, smartphone apps etc.) and the backend systems that provide the enterprise’s business logic and data to the agentic AI system (e.g., microservices, internal API etc.).
 
@@ -92,7 +89,10 @@ Below is a description about the logical layers, their key components and the ty
 - **Supporting services**: This includes the ecosystem of supporting services for overall security, compliance, secure devops application lifecycle and services that enable routine operational management for the agent AI system and its dependencies.
     These services are available as multi-tenant SaaS services on IBM Cloud.
 
-Based on above considerations and the enabling IaaS, PaaS, SaaS service combinations, multiple architectural patterns for deploying an agentic AI system are possible. The common patterns for agentic AI on IBM Cloud include:
+Based on above considerations and the enabling IaaS, PaaS, SaaS service combinations, multiple architectural patterns for deploying an agentic AI system are possible.
+
+###### Common architectural patterns
+The common architectural patterns for agentic AI on IBM Cloud include:
 
 - **Pattern 1: Minimal - Shared GPUs**: Refer to this for getting started with agentic AI, basic experimentation, development, PoCs etc.
 - **Pattern 2: Small/Medium - Shared GPUs**: Refer to this for small/medium size production agentic AI workloads, where the organization wants convenience and does not want deep control over generative AI infrastructure and platform.
@@ -230,12 +230,11 @@ The following table outlines the products or services used in the architecture f
 
 | Aspects | Architecture components | How the component is used |
 | -------------- | -------------- | -------------- |
-| Data | [Watsonx Assistant](https://www.ibm.com/products/Watsonx-assistant) | Conversational artificial intelligence platform |
-|  | [Watson Discovery](https://www.ibm.com/products/watson-discovery) | Automates the discovery of information and insights with advanced Natural Language Processing and Understanding |
+| Data | [watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate) | Orchestrate AI agents, assistants and workflows across your business |
 |  | [watsonx.ai](https://www.ibm.com/products/watsonx-ai) | Brings together new generative AI capabilities powered by foundation models and traditional machine learning (ML) into a powerful studio spanning the AI lifecycle |
-|  | [watsonx.data](https://www.ibm.com/products/watsonx-data) | Enables you to scale analytics and AI with all your data, wherever it resides |
+|  | [watsonx.data with Milvus](https://www.ibm.com/products/watsonx-data) | Enables data analytics for AI at scale and provides Milvus database to store vector embeddings for RAG patterns |
 |  | [watsonx.governance](https://www.ibm.com/products/watsonx-governance) | Direct, manage and monitor the artificial intelligence activities |
-|  | [Elasticsearch](https://www.ibm.com/topics/elasticsearch) | Database to store vector representations  also known as embeddings created by using machine learning algorithms |
+|  | [Elasticsearch](https://www.ibm.com/topics/elasticsearch) | Database to store vector embeddings for RAG patterns |
 | Compute | [Virtual Servers for VPC](https://cloud.ibm.com/docs/vpc?topic=vpc-about-advanced-virtual-servers&interface=ui) | Web, App, and database servers |
 | | [Code Engine](https://cloud.ibm.com/docs/codeengine?topic=codeengine-about) |  Abstracts the operational burden of building, deploying, and managing workloads in Kubernetes so that developers can focus on what matters most to them: the source code|
 | | [Red Hat OpenShift Kubernetes Service (ROKS)](https://cloud.ibm.com/docs/openshift?topic=openshift-getting-started) | A managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud |
@@ -261,9 +260,8 @@ The following table outlines the products or services used in the architecture f
 |  | [Continuous Compliance (CC)](https://cloud.ibm.com/docs/devsecops?topic=devsecops-tutorial-cc-toolchain) | A pipeline that continuously scans deployed artifacts and repositories |
 |  | [Container Registry](https://cloud.ibm.com/apidocs/container-registry) | Highly available, and scalable private image registry |
 | Resiliency | 	[VPC VSIs, VPC Block across multiple zones in two regions](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-vpc-multi-region) | Web, app, database high availability and disaster recovery |
-| Service Management | [IBM Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-about-monitor) | Apps and operational monitoring |
-|  | [IBM Log Analysis](https://cloud.ibm.com/docs/log-analysis?topic=log-analysis-getting-started) | Apps and operational logs |
-|  | [Activity Tracker Event Routing](https://cloud.ibm.com/docs/activity-tracker?topic=activity-tracker-getting-started) | Audit logs |
+| Service Management | [Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-about-monitor) | Apps and operational monitoring |
+|  | [Cloud Logs](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-about-cl) | Operational and audit logs |
 {: caption="Table 2. Components" caption-side="bottom"}
 
 ## Compliance
