@@ -109,7 +109,7 @@ The reference architectures below show how IBM Cloud provides a secure, complian
 
 This architecture uses minimal shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. For the purpose of trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
 
-![alt text](1-getting-started.svg){: caption="Figure: Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="center"}
+![alt text](1-getting-started.svg){: caption="Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"}
 
 Below is a description about the deployment of workloads and their administration.
 
@@ -133,7 +133,7 @@ PaaS and SaaS services provide their own security and access controls for the ho
 
 This architecture uses shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
 
-![alt text](2-multi-tenant.svg){: caption="Figure: Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs." caption-side="bottom"}
+![alt text](2-multi-tenant.svg){: caption="Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs." caption-side="bottom"}
 
 Below is a description about the deployment of workloads and their administration.
 
@@ -159,7 +159,7 @@ This architecture uses dedicated single-tenant deployments of applications and g
 
 Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
 
-![alt text](3-single-tenant.svg){: caption="Figure: Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs." caption-side="bottom"}
+![alt text](3-single-tenant.svg){: caption="Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs." caption-side="bottom"}
 
 Below is a description about the deployment of workloads on VPCs and their administration.
 
@@ -191,8 +191,6 @@ The available GPU profiles can be found [here](https://cloud.ibm.com/docs/vpc?to
 **Edge Compute and Network**<br>
 
 The edge VPC is used to enhance boundary protection for the end-use facing application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet.
-
-
 
 ## Design concepts
 {: #design-concepts}
