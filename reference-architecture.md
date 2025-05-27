@@ -109,8 +109,7 @@ The reference architectures below show how IBM Cloud provides a secure, complian
 
 This architecture uses minimal shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. For the purpose of trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
 
-![alt text](1-getting-started.svg)
-{: caption="Figure: Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"} {: style="text-align: center;"}
+![alt text](1-getting-started.svg){: caption="Figure: Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"}
 
 Below is a description about the deployment of workloads and their administration.
 
@@ -134,7 +133,7 @@ PaaS and SaaS services provide their own security and access controls for the ho
 
 This architecture uses shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
 
-![alt text](rag-pattern-v2-arch-ALL-agentic-ref.drawio.svg)
+![alt text](2-multi-tenant.svg)
 
 ##### Figure: Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs.
 
@@ -162,7 +161,8 @@ This architecture uses dedicated single-tenant deployments of applications and g
 
 Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
 
-![alt text](rag-pattern-v2-arch-ALL-agentic-ref.drawio.svg)
+![alt text](3-single-tenant.svg)
+
 
 ##### Figure: Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs.
 
