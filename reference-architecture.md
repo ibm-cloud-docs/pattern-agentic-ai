@@ -86,7 +86,7 @@ Below is a description about the logical layers, their key components and the ty
 
   A fundamental architectural decision is about the organization's level of access and control over GPUs for generative AI tasks like inferencing, and fine tuning. IBM Cloud watsonx.ai SaaS service has a shared multi-tenant infrastructure and GPUs shared across organizations' workloads. IBM Cloud IaaS and PaaS services that include options from virtual servers, Red Hat AI and watsonx.ai software provide dedicated single-tenant infrastructure and control over GPUs.
   
-- **Supporting services**: This includes the ecosystem of supporting services for overall security, compliance, secure devops application lifecycle and services that enable routine operational management for the agent AI system and its dependencies.
+- **Supporting services**: This includes the ecosystem of supporting services for overall security, compliance, secure devops application lifecycle and services that enable routine operational management for the agentic AI system and its dependencies.
     These services are available as multi-tenant SaaS services on IBM Cloud.
 
 Based on above considerations and the enabling IaaS, PaaS, SaaS service combinations, multiple architectural patterns for deploying an agentic AI system are possible.
@@ -107,7 +107,7 @@ The reference architectures below show how IBM Cloud provides a secure, complian
 
 ### Pattern 1: Minimal - Shared GPUs
 
-This architecture uses minimal shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. For the purpose of trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
+This architecture uses minimal shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying applications and utilizing generative AI platform GPUs. For the purpose of trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
 
 ![alt text](1-getting-started.svg){: caption="Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"}
 
@@ -120,7 +120,7 @@ IBM Cloud Identity and Access Management services.
 Serverless platform like Code Engine for hosting these applications, backend services and IBM Cloud databases. 
 
 **Agentic AI Application Workload**<br>
-Serverless platform like Code Engine and other IBM Cloud platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no code alternatives to create and host agentic AI systems. 
+Serverless platform like Code Engine and other IBM Cloud platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no-code alternatives to create and host agentic AI systems. 
 
 **Generative AI Platform**<br>
 Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS service.
@@ -131,7 +131,7 @@ PaaS and SaaS services provide their own security and access controls for the ho
 
 ### Pattern 2: Small/Medium - Shared GPUs
 
-This architecture uses shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying of applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
+This architecture uses shared multi-tenant PaaS and SaaS services from IBM Cloud for deploying applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on IBM Cloud. 
 
 ![alt text](2-multi-tenant.svg){: caption="Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs." caption-side="bottom"}
 
@@ -144,7 +144,7 @@ IBM Cloud Identity and Access Management services.
 Serverless platform like Code Engine for hosting these applications, backend services and IBM Cloud databases. 
 
 **Agentic AI Application Workload**<br>
-Serverless platform like Code Engine and other IBM Cloud platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no code alternatives to create and host agentic AI systems. 
+Serverless platform like Code Engine and other IBM Cloud platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no-code alternatives to create and host agentic AI systems. 
 
 **Generative AI Platform**<br>
 Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS service.
@@ -169,7 +169,7 @@ The Management VPC provides compute, storage, and network services like VPN to e
 
 **Application Workload**<br>
 
-The Application workload VPC provides the dedicated compute, storage, and network services to support the frontend / UI application that end-users use to access an agentic system. It also includes backend applications and business microservices that agentic AI application many require. These include the virtual server instance or Red Hat OpenShift for containerized workloads.
+The Application workload VPC provides the dedicated compute, storage, and network services to support the frontend / UI application that end-users use to access an agentic system. It also includes backend applications and business microservices that agentic AI application may require. These include the virtual server instance or Red Hat OpenShift for containerized workloads.
 
 **Agentic AI Application Workload**<br>
 
@@ -190,7 +190,7 @@ The available GPU profiles can be found [here](https://cloud.ibm.com/docs/vpc?to
 
 **Edge Compute and Network**<br>
 
-The edge VPC is used to enhance boundary protection for the end-use facing application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet.
+The edge VPC is used to enhance boundary protection for the end-user facing application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet.
 
 ## Design concepts
 {: #design-concepts}
