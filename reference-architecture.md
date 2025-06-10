@@ -128,6 +128,12 @@ Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS se
 **Edge Compute and Network**<br>
 PaaS and SaaS services provide their own security and access controls for the hosted applications and services.
 
+Here are some references to get started with this pattern:
+
+- [Code Engine - Getting started](https://cloud.ibm.com/docs/codeengine?topic=codeengine-getting-started#app-hello) 
+- [watsonx.ai - Getting started](https://www.ibm.com/docs/en/watsonx/saas?topic=getting-started-tutorials)
+- [watsonx Orchestrate - Getting started](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=getting-started-watsonx-orchestrate)
+
 
 ### Pattern 2: Small/Medium - Shared GPUs
 
@@ -151,6 +157,13 @@ Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS se
 
 **Edge Compute and Network**<br>
 PaaS and SaaS services provide their own security and access controls for the hosted applications and services.
+
+In this pattern [Deployable Architectures](https://cloud.ibm.com/docs/secure-enterprise?topic=secure-enterprise-understand-module-da#what-is-da) can be utilized for automating the provisioning and deployment of services. Here are some references.
+
+- [DevSecOps Application Lifecycle Management – Deployable Architecture](https://cloud.ibm.com/docs/devsecops-alm?topic=devsecops-alm-deploy-arch-ibm-devsecops-alm)
+- [Security and Observability Services – Deployable Architecture](https://cloud.ibm.com/docs/security-hub?topic=security-hub-core-security-services-pattern)
+- [Retrieval Augmented Generation - Deployable Architecture](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/Retrieval_Augmented_Generation_Pattern-5fdd0045-30fc-4013-a8bc-6db9d5447a52-global)
+- [Gen AI pattern for watsonx on IBM Cloud](https://cloud.ibm.com/docs/pattern-genai-rag?topic=pattern-genai-rag-genai-pattern)
 
 
 ### Pattern 3: Medium/Large - Dedicated GPUs
@@ -190,7 +203,16 @@ The available GPU profiles can be found [here](https://cloud.ibm.com/docs/vpc?to
 
 **Edge Compute and Network**<br>
 
-The edge VPC is used to enhance boundary protection for the end-user facing application workload VPCs, by allowing consumers to access agentic AI user interface and applications through the public internet.
+The edge VPC is used to enhance boundary protection. Consumers access agentic AI front-end/user interface applications in the workload VPCs from the public internet through edge VPC protections and load balancing. Transit Gateway provides connectivity to external or on-premises resources via Direct Link and also between VPCs.
+
+This pattern includes deploying applications and platforms on VPCs. Here are some references.
+
+- [VPC Landing zone - Deployable Architecture](https://cloud.ibm.com/docs/secure-infrastructure-vpc)
+- [Red Hat Enterprise Linux AI - Deployable Architecture](https://cloud.ibm.com/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-rhel-ai-vsi-d85e5d60-cce5-45f4-bbbd-4bcc32c66abf-global)
+- [Deploying microservices on Red Hat OpenShift](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-openshift-microservices)
+- [Customer managed watsonx gen AI pattern](https://cloud.ibm.com/docs/pattern-customer-managed-watsonx-gen-ai)
+
+
 
 ## Design concepts
 {: #design-concepts}
