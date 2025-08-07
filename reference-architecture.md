@@ -2,7 +2,7 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-07-25"
+lastupdated: "2025-08-07"
 
 keywords: 
 subcollection: pattern-agentic-ai
@@ -65,19 +65,15 @@ Based on the described considerations and the enabling IaaS, PaaS, SaaS service 
 
 The common architectural patterns for agentic AI on {{site.data.keyword.cloud_notm}} include:
 
-- **Pattern 1: Minimal - Shared GPUs**: Refer to this for getting started with agentic AI, basic experimentation, development, PoCs, etc.
-- **Pattern 2: Small/Medium - Shared GPUs**: Refer to this for small/medium size production agentic AI workloads, where the organization wants convenience and does not want deep control over generative AI infrastructure and platform.
-- **Pattern 3: Medium/Large - Dedicated GPUs**: Refer to this for medium/large production agentic AI workloads, where the organization wants deeper control over generative AI infrastructure, GPUs and platform.
+- **Minimal - Shared GPUs**: Refer to this for getting started with agentic AI, basic experimentation, development, PoCs, etc.
+- **Small/Medium - Shared GPUs**: Refer to this for small/medium size production agentic AI workloads, where the organization wants convenience and does not want deep control over generative AI infrastructure and platform.
+- **Medium/Large - Dedicated GPUs**: Refer to this for medium/large production agentic AI workloads, where the organization wants deeper control over generative AI infrastructure, GPUs and platform.
 
 Reference architectures for these patterns are described in the following sections.
 
-## Architecture diagram
-{: #architecture-diagram}
 
-The reference architectures below show how {{site.data.keyword.cloud_notm}} provides a secure, compliant, and resilient environment to implement an agentic AI system. 
-
-### Pattern 1: Minimal - Shared GPUs
-{: #pattern-1}
+### Minimal - Shared GPUs
+{: #minimal-shared-gpu}
 
 This architecture uses minimal shared multi-tenant PaaS and SaaS services from {{site.data.keyword.cloud_notm}} for deploying applications and using generative AI platform GPUs. For trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
 
@@ -107,8 +103,8 @@ To get started with this pattern, check out the following references:
 - [watsonx Orchestrate - Getting started](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=getting-started-watsonx-orchestrate){: external}
 
 
-### Pattern 2: Small/Medium - Shared GPUs
-{: #pattern-2}
+### Small to Medium - Shared GPUs
+{: #small-medium-shared}
 
 This architecture uses shared multi-tenant PaaS and SaaS services from {{site.data.keyword.cloud_notm}} for deploying applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on {{site.data.keyword.cloud_notm}}. 
 
@@ -139,8 +135,8 @@ In this pattern [Deployable Architectures](/docs/secure-enterprise?topic=secure-
 - [Gen AI pattern for watsonx on {{site.data.keyword.cloud_notm}}](/docs/pattern-genai-rag?topic=pattern-genai-rag-genai-pattern)
 
 
-### Pattern 3: Medium/Large - Dedicated GPUs
-{: #pattern-3}
+### Medium to Large - Dedicated GPUs
+{: #medium-large-dedicated}
 
 This architecture uses dedicated single-tenant deployments of applications and generative AI platform and utilizes virtual private clouds (VPCs) with {{site.data.keyword.cloud_notm}} IaaS and PaaS services. It reuses the [best practices](/docs/framework-financial-services?topic=framework-financial-services-about) for {{site.data.keyword.cloud_notm}} for Financial Services and [VPC reference architecture](/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
 
