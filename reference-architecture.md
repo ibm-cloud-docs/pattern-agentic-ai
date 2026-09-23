@@ -2,7 +2,8 @@
 
 copyright:
   years: 2025
-lastupdated: "2025-07-25"
+
+lastupdated: "2026-09-23"
 
 keywords: 
 subcollection: pattern-agentic-ai
@@ -31,20 +32,21 @@ production: true
 {: toc-content-type="reference-architecture"}
 {: toc-version="1.0"}
 
-This reference architecture summarizes the best practices for deploying agentic artificial intelligence (AI) patterns on {{site.data.keyword.cloud_notm}}. 
+This reference architecture summarizes the best practices for deploying agentic artificial intelligence (AI) patterns on {{site.data.keyword.cloud_notm}}.
+{: shortdesc}
 
-[Agentic AI](https://www.ibm.com/think/topics/agentic-ai) is rapidly enabling a new paradigm for organizations to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. Agentic AI systems require not just the AI and generative AI capabilities but also rely on various other supporting services that provide the ecosystem for development and operations. 
+[Agentic AI](https://www.ibm.com/think/topics/agentic-ai){: external} is rapidly enabling a new paradigm for organizations to improve their products, services, and business processes. Understanding agentic AI and its dependencies is vital for navigating its complex landscape. Agentic AI systems require not just the AI and generative AI capabilities but also rely on various other supporting services that provide the ecosystem for development and operations.
 
 ## Logical architecture and key components
 {: #architecture-components}
 
 The following figure shows the logical architecture and key components of a typical agentic AI system on {{site.data.keyword.cloud_notm}}. 
 
-![alt text](agentic-high-level-ref-arch.drawio.svg){: caption="Agentic AI system showing logical architecture and key components." caption-side="bottom"}
+![Agentic AI logical architecture diagram showing the key layers and enabling cloud services](agentic-high-level-ref-arch.drawio.svg){: caption="Agentic AI system showing logical architecture and key components." caption-side="bottom"}
 
-To perform its function, each logical layer is enabled by a set of SaaS, PaaS, or IaaS cloud service options. SaaS services are multi-tenant, meaning that they logically separate deployments from different organizations but physically share the underlying infrastructure environment that is managed by {{site.data.keyword.cloud_notm}}. SaaS is suited for convenience, initial experimentation, PoCs and for simple to medium-complexity deployments in production. IaaS and PaaS services provide single-tenant dedicated isolated infrastructure for deployments with varying degree of control and management responsibilities for the organization. 
+To perform its function, each logical layer is enabled by a set of SaaS, PaaS, or IaaS cloud service options. SaaS services are multi-tenant, meaning that they logically separate deployments from different organizations but physically share the underlying infrastructure environment that is managed by {{site.data.keyword.cloud_notm}}. SaaS is suited for convenience, initial experimentation, proofs of concept (PoCs), and for simple to medium-complexity deployments in production. IaaS and PaaS services provide single-tenant dedicated isolated infrastructure for deployments with varying degree of control and management responsibilities for the organization.
 
-To learn more about the logical layers, their key components, and the typical SaaS, PassS, and IaaS cloud services that enable their function, read the following section.
+To learn more about the logical layers, their key components, and the typical SaaS, PaaS, and IaaS cloud services that enable their function, read the following section.
 
 - **Agentic AI application**: Includes the core agentic AI system of AI agent/s with their tools, and the orchestration framework to service the user requests by using LLMs. This might also include the applications that are required for user interaction with the agentic AI system (for example the user interface, chat interface, smartphone apps, etc.) and the backend systems that provide the enterprise’s business logic and data to the agentic AI system (for example, microservices, internal API, etc.).
 
@@ -65,23 +67,19 @@ Based on the described considerations and the enabling IaaS, PaaS, SaaS service 
 
 The common architectural patterns for agentic AI on {{site.data.keyword.cloud_notm}} include:
 
-- **Pattern 1: Minimal - Shared GPUs**: Refer to this for getting started with agentic AI, basic experimentation, development, PoCs, etc.
-- **Pattern 2: Small/Medium - Shared GPUs**: Refer to this for small/medium size production agentic AI workloads, where the organization wants convenience and does not want deep control over generative AI infrastructure and platform.
-- **Pattern 3: Medium/Large - Dedicated GPUs**: Refer to this for medium/large production agentic AI workloads, where the organization wants deeper control over generative AI infrastructure, GPUs and platform.
+- **Minimal - Shared GPUs**: Refer to this for getting started with agentic AI, basic experimentation, development, PoCs, and similar use cases.
+- **Small/Medium - Shared GPUs**: Refer to this for small/medium size production agentic AI workloads, where the organization wants convenience and does not want deep control over generative AI infrastructure and platform.
+- **Medium/Large - Dedicated GPUs**: Refer to this for medium/large production agentic AI workloads, where the organization wants deeper control over generative AI infrastructure, GPUs and platform.
 
 Reference architectures for these patterns are described in the following sections.
 
-## Architecture diagram
-{: #architecture-diagram}
 
-The reference architectures below show how {{site.data.keyword.cloud_notm}} provides a secure, compliant, and resilient environment to implement an agentic AI system. 
+### Minimal - Shared GPUs
+{: #minimal-shared-gpu}
 
-### Pattern 1: Minimal - Shared GPUs
-{: #pattern-1}
+This architecture uses minimal shared multi-tenant PaaS and SaaS services from {{site.data.keyword.cloud_notm}} for deploying applications and using generative AI platform GPUs. For trials and PoCs, the enhanced security, compliance, logging, and monitoring services are not required and not included in the architecture.
 
-This architecture uses minimal shared multi-tenant PaaS and SaaS services from {{site.data.keyword.cloud_notm}} for deploying applications and using generative AI platform GPUs. For trial/PoCs, the enhanced security, compliance, logging, monitoring services are not required and not included in the architecture.
-
-![alt text](1-getting-started.svg){: caption="Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"}
+![Agentic AI reference architecture diagram for Pattern 1: Minimal - Shared GPUs, showing serverless and SaaS services](1-getting-started.svg){: caption="Agentic AI reference architecture for Pattern 1: Minimal - Shared GPUs." caption-side="bottom"}
 
 The following is a description about the deployment of workloads and their administration.
 
@@ -92,7 +90,7 @@ Application Workload
 :  Serverless platform like Code Engine for hosting these applications, backend services and {{site.data.keyword.cloud_notm}} databases. 
 
 Agentic AI Application Workload
-:  Serverless platform like Code Engine and other {{site.data.keyword.cloud_notm}} platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no-code alternatives to create and host agentic AI systems. 
+:  Serverless platform like Code Engine and other {{site.data.keyword.cloud_notm}} platforms and services like watsonx Orchestrate, which provides low-code and no-code alternatives to create and host agentic AI systems. For inferencing, watsonx.ai provides the generative AI platform.
 
 Generative AI Platform
 :  Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS service.
@@ -107,14 +105,14 @@ To get started with this pattern, check out the following references:
 - [watsonx Orchestrate - Getting started](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=getting-started-watsonx-orchestrate){: external}
 
 
-### Pattern 2: Small/Medium - Shared GPUs
-{: #pattern-2}
+### Small to Medium - Shared GPUs
+{: #small-medium-shared}
 
 This architecture uses shared multi-tenant PaaS and SaaS services from {{site.data.keyword.cloud_notm}} for deploying applications and utilizing generative AI platform GPUs. Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on {{site.data.keyword.cloud_notm}}. 
 
-![alt text](2-multi-tenant.svg){: caption="Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs." caption-side="bottom"}
+![Agentic AI reference architecture diagram for Pattern 2: Small to Medium - Shared GPUs, showing multi-tenant PaaS and SaaS services with security and DevSecOps](2-multi-tenant.svg){: caption="Agentic AI reference architecture for Pattern 2: Small/Medium - Shared GPUs." caption-side="bottom"}
 
-Below is a description about the deployment of workloads and their administration.
+The following is a description of the deployment of workloads and their administration.
 
 Management and Administration
 :  {{site.data.keyword.cloud_notm}} Identity and Access Management services.
@@ -123,7 +121,7 @@ Application Workload
 :  Serverless platform like Code Engine for hosting these applications, backend services and {{site.data.keyword.cloud_notm}} databases. 
 
 Agentic AI Application Workload
-:  Serverless platform like Code Engine and other {{site.data.keyword.cloud_notm}} platforms and services like watsonx.ai and watsonx Orchestrate that provide low-code / no-code alternatives to create and host agentic AI systems. 
+:  Serverless platform like Code Engine and other {{site.data.keyword.cloud_notm}} platforms and services like watsonx Orchestrate, which provides low-code and no-code alternatives to create and host agentic AI systems. For inferencing, watsonx.ai provides the generative AI platform.
 
 Generative AI Platform
 :  Generative AI capabilities and shared GPUs are available from watsonx.ai SaaS service.
@@ -131,7 +129,7 @@ Generative AI Platform
 Edge Compute and Network
 :  PaaS and SaaS services provide their own security and access controls for the hosted applications and services.
 
-In this pattern [Deployable Architectures](/docs/secure-enterprise?topic=secure-enterprise-understand-module-da#what-is-da) can be utilized for automating the provisioning and deployment of services. Here are some references.
+In this pattern, [Deployable Architectures](/docs/secure-enterprise?topic=secure-enterprise-understand-module-da#what-is-da) can be used for automating the provisioning and deployment of services. For more information, see the following references.
 
 - [DevSecOps Application Lifecycle Management – Deployable Architecture](/docs/devsecops-alm?topic=devsecops-alm-deploy-arch-ibm-devsecops-alm)
 - [Security and Observability Services – Deployable Architecture](/docs/security-hub?topic=security-hub-core-security-services-pattern)
@@ -139,14 +137,14 @@ In this pattern [Deployable Architectures](/docs/secure-enterprise?topic=secure-
 - [Gen AI pattern for watsonx on {{site.data.keyword.cloud_notm}}](/docs/pattern-genai-rag?topic=pattern-genai-rag-genai-pattern)
 
 
-### Pattern 3: Medium/Large - Dedicated GPUs
-{: #pattern-3}
+### Medium to Large - Dedicated GPUs
+{: #medium-large-dedicated}
 
 This architecture uses dedicated single-tenant deployments of applications and generative AI platform and utilizes virtual private clouds (VPCs) with {{site.data.keyword.cloud_notm}} IaaS and PaaS services. It reuses the [best practices](/docs/framework-financial-services?topic=framework-financial-services-about) for {{site.data.keyword.cloud_notm}} for Financial Services and [VPC reference architecture](/docs/framework-financial-services?topic=framework-financial-services-vpc-architecture-about).
 
 Security, compliance, logging, monitoring and application lifecycle (DevSecOps) are common and required services available as SaaS on {{site.data.keyword.cloud_notm}}. 
 
-![alt text](3-single-tenant.svg){: caption="Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs." caption-side="bottom"}
+![Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs](3-single-tenant.svg){: caption="Agentic AI reference architecture for Pattern 3: Medium/Large - Dedicated GPUs." caption-side="bottom"}
 
 The following is a description about the deployment of workloads on VPCs and their administration.
 
@@ -173,7 +171,7 @@ Generative AI Platform
 Edge Compute and Network
 :  The edge VPC is used to enhance boundary protection. Consumers access agentic AI front-end/user interface applications in the workload VPCs from the public internet through edge VPC protections and load balancing. Transit Gateway provides connectivity to external or on-premises resources via Direct Link and also between VPCs.
 
-This pattern includes deploying applications and platforms on VPCs. Here are some references.
+This pattern includes deploying applications and platforms on VPCs. For more information, see the following references.
 
 - [VPC Landing zone - Deployable Architecture](/docs/secure-infrastructure-vpc)
 - [Red Hat Enterprise Linux AI - Deployable Architecture](/catalog/7a4d68b4-cf8b-40cd-a3d1-f49aff526eb3/architecture/deploy-arch-ibm-rhel-ai-vsi-d85e5d60-cce5-45f4-bbbd-4bcc32c66abf-global)
@@ -188,7 +186,7 @@ The following heatmap covers the design considerations related to the Architectu
 
 ![heatmap](heatmap.drawio-v2.svg "Current diagram"){: caption="Architecture design scope" caption-side="bottom"}
 
-* **Data:** Artifical Intelligence
+* **Data:** Artificial Intelligence
 * **Compute:** Virtual Servers, Containers, Serverless
 * **Storage:** Primary Storage, Backup
 * **Networking:** Enterprise Connectivity, Load Balancing, Domain Name Services
@@ -220,17 +218,17 @@ The following table outlines the products or services used in the architecture f
 
 | Aspects | Architecture components | How the component is used |
 | -------------- | -------------- | -------------- |
-| Data | [watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate) | Orchestrate AI agents, assistants and workflows across your business |
+| Data | [watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate){: external} | Orchestrate AI agents, assistants, and workflows across your business |
 |  | [watsonx.ai](https://www.ibm.com/products/watsonx-ai){: external} | Brings together new generative AI capabilities powered by foundation models and traditional machine learning (ML) into a powerful studio spanning the AI lifecycle |
 |  | [watsonx.data with Milvus](https://www.ibm.com/products/watsonx-data){: external} | Enables data analytics for AI at scale and provides Milvus database to store vector embeddings for RAG patterns |
-|  | [watsonx.governance](https://www.ibm.com/products/watsonx-governance){: external} | Direct, manage and monitor the artificial intelligence activities |
+|  | [watsonx.governance](https://www.ibm.com/products/watsonx-governance){: external} | Directs, manages, and monitors AI activities; supports compliance, observability, and risk management including agentic AI runtime monitoring |
 |  | [Elasticsearch](https://www.ibm.com/topics/elasticsearch){: external} | Database to store vector embeddings for RAG patterns |
 | Compute | [Virtual Servers for VPC](/docs/vpc?topic=vpc-about-advanced-virtual-servers&interface=ui) | Web, App, and database servers |
 | | [Code Engine](/docs/codeengine?topic=codeengine-about) |  Abstracts the operational burden of building, deploying, and managing workloads in Kubernetes so that developers can focus on what matters most to them: the source code|
 | | [Red Hat OpenShift Kubernetes Service (ROKS)](/docs/openshift?topic=openshift-getting-started) | A managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on {{site.data.keyword.cloud_notm}} |
 | Storage | [Cloud Object Storage](/docs/cloud-object-storage?topic=cloud-object-storage-about-cloud-object-storage) | Web app static content, backups, logs (application, operational, and audit logs) |
 |  | [VPC Block Storage](/docs/openshift?topic=openshift-vpc-block) | Web app storage if needed |
-| Networking | [VPC Virtual Private Network (VPN)](/docs/iaas-vpn?topic=iaas-vpn-getting-started) | Remote access to manage resources in private network |
+| Networking | [VPN for VPC](/docs/vpc?topic=vpc-using-vpn) | Remote access to manage resources in private network |
 |  | [Virtual Private Endpoint (VPE)](/docs/vpc?topic=vpc-about-vpe) | For private network access to Cloud Services, e.g., Key Protect, COS, etc. |
 |  | [VPC Load Balancers](/docs/vpc?topic=vpc-load-balancers) | Application Load Balancing for web servers, app servers, and database servers |
 |  | [Direct Link 2.0](/docs/dl?topic=dl-get-started-with-ibm-cloud-dl) | Seamlessly connect on-premises resources to cloud resources |
@@ -248,7 +246,7 @@ The following table outlines the products or services used in the architecture f
 | DevOps | [Continuous Integration (CI)](/docs/containers?topic=containers-cicd) | 	A pipeline that tests, scans and builds the deployable artifacts from the application repositories |
 |  | [Continuous Deployment (CD)](/docs/ContinuousDelivery?topic=ContinuousDelivery-getting-started) | A pipeline that generates all of the evidence and change request summary content |
 |  | [Continuous Compliance (CC)](/docs/devsecops?topic=devsecops-tutorial-cc-toolchain) | A pipeline that continuously scans deployed artifacts and repositories |
-|  | [Container Registry](/apidocs/container-registry) | Highly available, and scalable private image registry |
+|  | [Container Registry](/docs/Registry?topic=Registry-getting-started) | Highly available and scalable private image registry |
 | Resiliency | 	[VPC VSIs, VPC Block across multiple zones in two regions](/docs/solution-tutorials?topic=solution-tutorials-vpc-multi-region) | Web, app, database high availability and disaster recovery |
 | Service Management | [Cloud Monitoring](/docs/monitoring?topic=monitoring-about-monitor) | Apps and operational monitoring |
 |  | [Cloud Logs](/docs/cloud-logs?topic=cloud-logs-about-cl) | Operational and audit logs |
@@ -260,7 +258,7 @@ The following table outlines the products or services used in the architecture f
 ### CI / CD / CC Pipelines
 {: #ci-cd-cc-pipelines}
 
-The Continuous Integration (CI), Continuous Deployment (CD), and Continuous Compliance (CC) pipelines, referred to as [DevSecOps Application Lifecycle Management](/catalog/architecture/deploy-arch-ibm-devsecops-alm-e1c16cac-7ea8-413f-a819-67e3a3251e44-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D) are used to deploy the application, check for vulnerabilities, and ensure auditability. Below are some of important compliance features of DevSecOps Application Lifecycle Management: 
+The Continuous Integration (CI), Continuous Deployment (CD), and Continuous Compliance (CC) pipelines, referred to as [DevSecOps Application Lifecycle Management](/catalog/architecture/deploy-arch-ibm-devsecops-alm-e1c16cac-7ea8-413f-a819-67e3a3251e44-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D), are used to deploy the application, check for vulnerabilities, and ensure auditability. The following are the key compliance features of DevSecOps Application Lifecycle Management:
 
 
 Vulnerability Scans
@@ -273,9 +271,9 @@ Evidence Gathering
 :  This involves collecting and storing evidence of the development process, such as commit logs, build logs, and other relevant data. It helps in tracing back and understanding what happened at different stages of development.
 
 Evidence Locker
-:  This involves collecting and storing evidence of the development process, such as commit logs, build logs, and other relevant data. This helps in tracing back and understanding what happened at different stages of development.
+:  The evidence locker is a secure, tamper-evident repository that stores all collected evidence. It ensures that the evidence is preserved and auditable throughout the software delivery lifecycle.
 
 ### Security and Compliance Center
 {: #scc}
 
-This reference architecture utilizes the Security and Compliance Center which defines policy as code, implements controls for secure data and workload deployments and assess security and compliance posture. For this reference architecture two profiles are used. The [**{{site.data.keyword.cloud_notm}} Framework for Financial Services**](/docs/framework-financial-services-controls?topic=framework-financial-services-controls-overview) and **AI ICT Guardrails**. A profile is a grouping of controls that can be evaluated for compliance.
+This reference architecture uses the Security and Compliance Center, which defines policy as code, implements controls for secure data and workload deployments, and assesses security and compliance posture. For this reference architecture, two profiles are used: the [**{{site.data.keyword.cloud_notm}} Framework for Financial Services**](/docs/framework-financial-services-controls?topic=framework-financial-services-controls-overview) and **AI ICT Guardrails**. A profile is a grouping of controls that can be evaluated for compliance.
