@@ -1,16 +1,13 @@
-#  Name your file `toc.yaml`
-#  Make sure you include all nav file coding requirements, as defined in https://test.cloud.ibm.com/docs-internal/writing?topic=writing-code-nav
-#  Anything with a fully qualified URL with `http` or `https` will get an external link icon added to the nav entry
----
 toc:
   properties:
     subcollection: pattern-agentic-ai
     href: /docs?tab=solutions
     path: pattern-agentic-ai
+    category: ai
     audience: solution
     content-type: reference-architecture
     navigation: hidden
-    label: Reference architecture name # Replace
+    label: Agentic AI patterns
   entries:
   - navgroup:
       id: architecture
